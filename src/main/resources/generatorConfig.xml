@@ -8,9 +8,10 @@
 
     <context id="MySQLTables" targetRuntime="MyBatis3Kotlin">
         <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
-        <commengGenerator>
-            <proprety name="suppressDate" value="true" />
-        </commengGenerator>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true" />
+        </commentGenerator>
         <!-- データベース接続情報 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/book_manager"
@@ -23,16 +24,16 @@
             <property name="userJSR310Types" value="true" />
         </javaTypeResolver>
         <!-- Javaモデル生成設定 -->
-        <javaModelGenerator targetPackage="com.book.manager.infrastructure.database.record" targetProject="src/main/kotlin">
+        <javaModelGenerator targetPackage="com.book.manager.infrastructure.database.record" targetProject="/Users/onoakiraaki/IdeaProjects/Kotlin/book-manager/src/main/kotlin">
         </javaModelGenerator>
 
         <!-- Javaクライアント（Mapperインターフェース）生成設定 -->
-        <javaClientGenerator targetPackage="com.book.manager.infrastructure.database.mapper" targetProject="src/main/kotlin">
+        <javaClientGenerator targetPackage="com.book.manager.infrastructure.database.mapper" targetProject="/Users/onoakiraaki/IdeaProjects/Kotlin/book-manager/src/main/kotlin">
         </javaClientGenerator>
 
         <!-- テーブル設定 (例: your_table_name を実際のテーブル名に置き換えてください) -->
         <table tableName="%" >
-            <columnOverride column="role_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.book.manager.domain.enum.RoleType"/>
+            <columnOverride column="role_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.book.manager.domain.enums.RoleType"/>
         </table>
     </context>
 </generatorConfiguration>
