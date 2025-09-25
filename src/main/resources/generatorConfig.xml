@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="/Users/onoakiraaki/.gradle/caches/modules-2/files-2.1/com.mysql/mysql-connector-j/8.0.33/9e64d997873abc4318620264703d3fdb6b02dd5a/mysql-connector-j-8.0.33.jar" />
+
+    <context id="MySQLTables" targetRuntime="MyBatis3Kotlin">
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
+        <commengGenerator>
+            <proprety name="suppressDate" value="true" />
+        </commengGenerator>
+        <!-- データベース接続情報 -->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/book_manager"
+                        userId="root"
+                        password="mysql">
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="userJSR310Types" value="true" />
+        </javaTypeResolver>
+        <!-- Javaモデル生成設定 -->
+        <javaModelGenerator targetPackage="com.book.manager.infrastructure.database.record" targetProject="src/main/kotlin">
+        </javaModelGenerator>
+
+        <!-- Javaクライアント（Mapperインターフェース）生成設定 -->
+        <javaClientGenerator targetPackage="com.book.manager.infrastructure.database.mapper" targetProject="src/main/kotlin">
+        </javaClientGenerator>
+
+        <!-- テーブル設定 (例: your_table_name を実際のテーブル名に置き換えてください) -->
+        <table tableName="%" >
+            <columnOverride column="role_type" typeHandler="org.apache.ibatis.type.EnumTypeHandler" javaType="com.book.manager.domain.enum.RoleType"/>
+        </table>
+    </context>
+</generatorConfiguration>
