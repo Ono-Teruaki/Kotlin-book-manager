@@ -1,0 +1,27 @@
+package com.book.manager.infrastructure.database.mapper.custom
+
+import com.book.manager.infrastructure.database.record.custom.BookWithRentalRecord
+import org.apache.ibatis.annotations.Mapper
+import org.apache.ibatis.annotations.Result
+import org.apache.ibatis.annotations.Results
+import org.mybatis.dynamic.sql.util.SqlProviderAdapter
+import org.apache.ibatis.annotations.SelectProvider
+import org.apache.ibatis.type.JdbcType
+import org.mybatis.dynamic.sql.select.render.SelectStatementProvider
+
+@Mapper
+interface BookWithRentalMapper {
+    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @Results(
+        id = "BookWithRentalResult", value = [
+            Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
+            Result(column = "title", property = "title", jdbcType = JdbcType.VARCHAR),
+            Result(column = "author", property = "author", jdbcType = JdbcType.VARCHAR),
+            Result(column = "release_date", property = "release_date", jdbcType = JdbcType.DATE),
+            Result(column = "user_id", property = "user_id", jdbcType = JdbcType.BIGINT),
+            Result(column = "rental_datetime", property = "rental_datetime", jdbcType = JdbcType.TIMESTAMP),
+            Result(column = "return_deadline", property = "return_deadline", jdbcType = JdbcType.TIMESTAMP)
+        ]
+    )
+    fun selectMany(selectStatement: SelectStatementProvider): List<BookWithRentalRecord>
+}
