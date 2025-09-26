@@ -14,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.invoke
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import com.book.manager.application.service.BookManagerUserDetailsService
+import org.springframework.http.HttpMethod
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
@@ -35,6 +36,7 @@ class SecurityConfig {
         http {
             // 認可設定
             authorizeHttpRequests {
+                authorize(HttpMethod.OPTIONS, "/**", permitAll)
                 authorize("/login", permitAll)
                 authorize("/admin/**", hasAuthority(RoleType.ADMIN.toString()))
                 authorize(anyRequest, authenticated)
@@ -60,7 +62,7 @@ class SecurityConfig {
 
             // CORS設定
             cors {
-                configurationSource = corsConfigurationSource(emptyArray())
+                configurationSource = corsConfigurationSource()
             }
         }
         return http.build()
@@ -72,12 +74,10 @@ class SecurityConfig {
     }
 
     @Bean
-    fun corsConfigurationSource(
-        @Value("\${custom.cors.allowed-origins}") allowedOrigins: Array<String>
-    ): CorsConfigurationSource {
+    fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration()
 
-        configuration.allowedOrigins = allowedOrigins.toList()
+        configuration.allowedOrigins = listOf("http://localhost:8081")
         configuration.allowedMethods = listOf(CorsConfiguration.ALL)
         configuration.allowedHeaders = listOf(CorsConfiguration.ALL)
         configuration.allowCredentials = true
