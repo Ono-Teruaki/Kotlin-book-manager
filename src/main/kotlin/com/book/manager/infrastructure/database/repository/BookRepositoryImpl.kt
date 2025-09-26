@@ -6,6 +6,7 @@ import com.book.manager.domain.models.Rental
 import com.book.manager.domain.repository.BookRepository
 import com.book.manager.infrastructure.database.mapper.custom.BookWithRentalMapper
 import com.book.manager.infrastructure.database.mapper.custom.select
+import com.book.manager.infrastructure.database.mapper.custom.selectByPrimaryKey
 import com.book.manager.infrastructure.database.record.Book as BookRecord
 import com.book.manager.infrastructure.database.record.custom.BookWithRentalRecord
 import org.springframework.stereotype.Repository
@@ -41,5 +42,9 @@ class BookRepositoryImpl (
 
     private fun toRecord(model: Book): BookRecord {
         return BookRecord(model.id, model.title, model.author, Date.from(model.releaseDate.atStartOfDay(ZoneId.systemDefault()).toInstant()))
+    }
+
+    override fun findWithRental(id: Long): BookWithRental? {
+        return bookWithRentalMapper.selectByPrimaryKey(id)?.let { toModel(it) }
     }
 }

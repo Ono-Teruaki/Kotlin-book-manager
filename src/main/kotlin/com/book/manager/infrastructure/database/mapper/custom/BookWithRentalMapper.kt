@@ -3,6 +3,7 @@ package com.book.manager.infrastructure.database.mapper.custom
 import com.book.manager.infrastructure.database.record.custom.BookWithRentalRecord
 import org.apache.ibatis.annotations.Mapper
 import org.apache.ibatis.annotations.Result
+import org.apache.ibatis.annotations.ResultMap
 import org.apache.ibatis.annotations.Results
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter
 import org.apache.ibatis.annotations.SelectProvider
@@ -24,4 +25,8 @@ interface BookWithRentalMapper {
         ]
     )
     fun selectMany(selectStatement: SelectStatementProvider): List<BookWithRentalRecord>
+
+    @SelectProvider(type = SqlProviderAdapter::class, method = "select")
+    @ResultMap("BookWithRentalResult")
+    fun selectOne(selectStatement: SelectStatementProvider): BookWithRentalRecord?
 }

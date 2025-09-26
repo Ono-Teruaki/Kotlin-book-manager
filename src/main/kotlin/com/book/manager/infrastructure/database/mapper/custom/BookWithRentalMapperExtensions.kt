@@ -24,3 +24,16 @@ fun BookWithRentalMapper.select(): List<BookWithRentalRecord> {
     }
     return selectMany(selectStatement)
 }
+
+fun BookWithRentalMapper.selectByPrimaryKey(id_: Long): BookWithRentalRecord? {
+    val selectStatement = select(columnList) {
+        from(BookDynamicSqlSupport.book, "b")
+        leftJoin(RentalDynamicSqlSupport.rental, "r") {
+            on(BookDynamicSqlSupport.id) equalTo RentalDynamicSqlSupport.bookId
+        }
+        where {
+            BookDynamicSqlSupport.id isEqualTo id_
+        }
+    }
+    return selectOne(selectStatement)
+}
