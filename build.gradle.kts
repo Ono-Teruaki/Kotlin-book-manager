@@ -26,6 +26,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5")
+    implementation("org.springframework.boot:spring-boot-starter-security")
 
     implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.5.2")
 	runtimeOnly("com.mysql:mysql-connector-j:8.0.33")
