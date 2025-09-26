@@ -17,10 +17,10 @@ interface BookWithRentalMapper {
             Result(column = "id", property = "id", jdbcType = JdbcType.BIGINT, id = true),
             Result(column = "title", property = "title", jdbcType = JdbcType.VARCHAR),
             Result(column = "author", property = "author", jdbcType = JdbcType.VARCHAR),
-            Result(column = "release_date", property = "release_date", jdbcType = JdbcType.DATE),
-            Result(column = "user_id", property = "user_id", jdbcType = JdbcType.BIGINT),
-            Result(column = "rental_datetime", property = "rental_datetime", jdbcType = JdbcType.TIMESTAMP),
-            Result(column = "return_deadline", property = "return_deadline", jdbcType = JdbcType.TIMESTAMP)
+            Result(column = "release_date", property = "releaseDate", jdbcType = JdbcType.DATE),
+            Result(column = "user_id", property = "userId", jdbcType = JdbcType.BIGINT),
+            Result(column = "rental_datetime", property = "rentalDateTime", jdbcType = JdbcType.TIMESTAMP),
+            Result(column = "return_deadline", property = "returnDeadline", jdbcType = JdbcType.TIMESTAMP)
         ]
     )
     fun selectMany(selectStatement: SelectStatementProvider): List<BookWithRentalRecord>
