@@ -21,7 +21,7 @@
         </jdbcConnection>
 
         <javaTypeResolver>
-            <property name="userJSR310Types" value="true" />
+            <property name="useJSR310Types" value="true" />
         </javaTypeResolver>
         <!-- Javaモデル生成設定 -->
         <javaModelGenerator targetPackage="com.book.manager.infrastructure.database.record" targetProject="/Users/onoakiraaki/IdeaProjects/Kotlin/book-manager/src/main/kotlin">
