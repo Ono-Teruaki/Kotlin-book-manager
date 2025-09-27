@@ -3,6 +3,7 @@ package com.book.manager.infrastructure.database.repository
 import com.book.manager.domain.models.Rental
 import com.book.manager.domain.repository.RentalRepository
 import com.book.manager.infrastructure.database.mapper.RentalMapper
+import com.book.manager.infrastructure.database.mapper.deleteByPrimaryKey
 import org.springframework.stereotype.Repository
 import com.book.manager.infrastructure.database.mapper.insert
 
@@ -17,6 +18,10 @@ class RentalRepositoryImpl (
         rentalMapper.insert(toRecord(rental))
     }
 
+    override fun endRental(bookId: Long) {
+        rentalMapper.deleteByPrimaryKey(bookId)
+    }
+
     private fun toRecord(model: Rental): RentalRecord {
         return RentalRecord(
             bookId = model.bookId,
@@ -25,4 +30,5 @@ class RentalRepositoryImpl (
             returnDeadline = model.returnDeadline
         )
     }
+
 }
