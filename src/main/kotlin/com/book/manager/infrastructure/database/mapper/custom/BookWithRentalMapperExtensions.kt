@@ -19,7 +19,7 @@ fun BookWithRentalMapper.select(): List<BookWithRentalRecord> {
     val selectStatement = select(columnList) {
         from(BookDynamicSqlSupport.book, "b")
         leftJoin(RentalDynamicSqlSupport.rental, "r") {
-            on(BookDynamicSqlSupport.id) equalTo BookDynamicSqlSupport.book.id
+            on(BookDynamicSqlSupport.id) equalTo RentalDynamicSqlSupport.bookId
         }
     }
     return selectMany(selectStatement)
