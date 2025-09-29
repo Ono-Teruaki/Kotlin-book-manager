@@ -27,6 +27,8 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
+
 
     implementation("org.mybatis.dynamic-sql:mybatis-dynamic-sql:1.5.2")
 	runtimeOnly("com.mysql:mysql-connector-j:8.0.33")
@@ -38,6 +40,8 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 	testImplementation("org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5")
+    testImplementation("org.mockito:mockito-core:5.5.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

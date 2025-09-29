@@ -1,0 +1,27 @@
+package com.book.manager.application.service
+
+import com.book.manager.domain.models.Book
+import com.book.manager.domain.models.BookWithRental
+import com.book.manager.domain.repository.BookRepository
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
+import java.time.LocalDate
+
+internal class BookServiceTest {
+    private val bookRepository = mock<BookRepository>()
+    private val bookService = BookService(bookRepository)
+
+    @Test
+    fun `getList when book list is exist then return list`() {
+        val book = Book(1, "Kotlin入門", "琴麟太郎", LocalDate.now())
+        val bookWithRental = BookWithRental(book, null)
+        val expected = listOf(bookWithRental)
+
+        whenever(bookRepository.findALlWithRental()).thenReturn(expected)
+
+        val result = bookService.getList()
+        Assertions.assertThat(expected).isEqualTo(result)
+    }
+}
